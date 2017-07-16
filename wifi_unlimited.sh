@@ -7,8 +7,7 @@
 
 # Check arguments
 if [[ -z $1 || -z $2 ]]; then
-    echo -e 'Usage : ./wifi_unlimited.sh <interface> <uuid> <duration>'
-    echo -e 'Show UUIDs with "nmcli c show"'
+    echo -e 'Usage : ./wifi_unlimited.sh <interface> <duration>'
     exit 1
 fi
 
