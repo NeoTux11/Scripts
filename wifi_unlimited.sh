@@ -2,11 +2,11 @@
 
 # This script created by NeoTux allows connection unlimited 
 # to network available only for a certain duration (like 10 minutes)
-# Usage : ./wifi_unlimited.sh <interface> <uuid> <duration>
-# Note : This script use macchanger and you need possibly use nmcli to discover UUIDs
+# Usage : ./wifi_unlimited.sh <interface> <duration>
+# Note : This script needs macchanger
 
 # Check arguments
-if [[ -z $1 || -z $2 || -z $3 ]]; then
+if [[ -z $1 || -z $2 ]]; then
     echo -e 'Usage : ./wifi_unlimited.sh <interface> <uuid> <duration>'
     echo -e 'Show UUIDs with "nmcli c show"'
     exit 1
@@ -14,8 +14,12 @@ fi
 
 # Store variables
 interface=$1
-uuid=$2
-duration=$3
+duration=$2
+current_mac=$(cat /sys/class/net/$interface/address)
+
+# Print current MAC Adress
+echo -e "[*] Your current MAC Adress is $current_mac
+and it will be changed every $duration seconds \n"
 
 # Main loop deco/reco
 while true; do
@@ -34,5 +38,3 @@ while true; do
     sleep $duration
 
 done
-
-# Livebox-AAB6 : 8102b85e-df9b-43e9-8af3-7f73e07b0982
